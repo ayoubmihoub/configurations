@@ -30,4 +30,4 @@ spring:
     admin-realm: master
     admin-client-id: admin-cli
     admin-username: admin
-    admin-password: ton_mot_de_passe
+    admin-password: admin
