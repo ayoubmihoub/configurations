@@ -29,6 +29,10 @@ eureka:
 keycloak:
   server-url: http://localhost:8081
   realm: smart-recruit
+
+  client-id: smart-recruit-client
+  client-secret:
+
   admin-realm: master
   admin-client-id: admin-cli
   admin-username: admin
