@@ -24,3 +24,10 @@ spring:
     client:
       service-url:
         defaultZone: http://localhost:8761/eureka
+  keycloak:
+    server-url: http://localhost:8081
+    realm: smart-recruit
+    admin-realm: master
+    admin-client-id: admin-cli
+    admin-username: admin
+    admin-password: ton_mot_de_passe
