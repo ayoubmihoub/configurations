@@ -20,6 +20,18 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8081/realms/smart-recruit
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ayoubmihoub80@gmail.com
+    password: omrg trrs mcxy zigc
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 
 eureka:
   client:
@@ -37,3 +49,6 @@ keycloak:
   admin-client-id: admin-cli
   admin-username: admin
   admin-password: admin
+
+app:
+  frontend-url: http://localhost:4200
