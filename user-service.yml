@@ -36,15 +36,15 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka-server:8761/eureka
+      defaultZone: http://eureka-server:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
 
 keycloak:
   server-url: http://keycloak:8080
   realm: smart-recruit
-
   client-id: smart-recruit-client
   client-secret:
-
   admin-realm: master
   admin-client-id: admin-cli
   admin-username: admin
