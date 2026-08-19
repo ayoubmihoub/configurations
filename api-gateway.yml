@@ -4,11 +4,21 @@ server:
 spring:
   application:
     name: api-gateway
+
   security:
     oauth2:
       resourceserver:
         jwt:
           issuer-uri: ${KEYCLOAK_URL:http://localhost:8081}/realms/smart-recruit
+
+  cloud:
+    gateway:
+      routes:
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/auth/**
 
 eureka:
   client:
