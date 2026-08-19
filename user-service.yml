@@ -1,54 +1,44 @@
 server:
-  port: 8082
+  port: 8080
 
 spring:
   application:
-    name: user-service
-
-  datasource:
-    url: jdbc:postgresql://postgres:5432/smart-recruit
-    username: postgres
-    password: "***"
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+    name: api-gateway
 
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://keycloak:8080/realms/smart-recruit
+          issuer-uri: ${KEYCLOAK_URL:http://localhost:8081}/realms/smart-recruit
 
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: ayoubmihoub80@gmail.com
-    password: "omrg trrs mcxy zigc"
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+  cloud:
+    gateway:
+
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:4200"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+      routes:
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/auth/**
 
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka-server:8761/eureka/
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
     register-with-eureka: true
     fetch-registry: true
-
-keycloak:
-  server-url: http://keycloak:8080
-  realm: smart-recruit
-  client-id: smart-recruit-client
-  client-secret:
-  admin-realm: master
-  admin-client-id: admin-cli
-  admin-username: admin
-  admin-password: admin
-
-app:
-  frontend-url: http://localhost:4200
